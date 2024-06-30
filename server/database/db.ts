@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
+import env from "dotenv";
 
-const MONGO_URL =
-  "mongodb+srv://pealh0320:245810@todo.uhmep5x.mongodb.net/?retryWrites=true&w=majority&appName=Todo";
+env.config();
+
+const username = process.env.MONGO_USERNAME;
+const pass = process.env.MONGO_PASSWORD;
+
+const MONGO_URL = `mongodb+srv://${username}:${pass}@todo.uhmep5x.mongodb.net/?retryWrites=true&w=majority&appName=Todo`;
 
 mongoose.connect(MONGO_URL);
 

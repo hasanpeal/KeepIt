@@ -28,7 +28,7 @@ function Login() {
     if (alertStat !== null) {
       timer = setTimeout(() => {
         setAlertStat(null);
-      }, 5000); // 5000 milliseconds = 5 seconds
+      }, 3000); // 5000 milliseconds = 5 seconds
     }
     return () => {
       if (timer) clearTimeout(timer);
