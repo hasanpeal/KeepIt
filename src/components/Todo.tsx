@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardTitle } from "keep-react";
 import "./Todo.css";
 import { Input } from "keep-react";
 import { Button } from "keep-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
