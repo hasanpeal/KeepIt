@@ -6,11 +6,24 @@ export async function createTodo(
   text: string
 ) {
   try {
-    const todo = new Todo(userId, text);
+    console.log("useId received in createTodo " + userId);
+    console.log("Text received in createTodo " + text);
+    const todo = new Todo({ userId, text });
     await todo.save();
     return todo;
   } catch (err) {
-    console.log(err);
+    console.log("Error in createTodo function ");
+  }
+}
+
+export async function deleteTodo(userId: mongoose.Types.ObjectId, text: string) {
+  try {
+    // Find and delete the todo item
+    const result = await Todo.deleteOne({ userId, text }).exec();
+    return result;
+  } catch (error) {
+    console.error("Error deleting todo");
+    throw error;
   }
 }
 
