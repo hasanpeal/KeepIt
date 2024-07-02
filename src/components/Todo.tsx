@@ -19,10 +19,13 @@ function Todo() {
           email: string;
           password: string;
         };
-        const result = await axios.post("http://localhost:3001/todos", {
-          email,
-          password,
-        });
+        const result = await axios.post(
+          "https://keepitbackend-xvp5.onrender.com/todos",
+          {
+            email,
+            password,
+          }
+        );
         const todosFromServer: string[] = result.data.todos;
         setTodos(todosFromServer);
         setItems(todosFromServer);
@@ -43,9 +46,13 @@ function Todo() {
     const { email } = location.state;
     try{
         console.log("PPP Email and text: " + email + " " + text);
-        const result = await axios.post("http://localhost:3001/add", {
-            email, text
-        });
+        const result = await axios.post(
+          "https://keepitbackend-xvp5.onrender.com/add",
+          {
+            email,
+            text,
+          }
+        );
         setItems((prevItems) => {
           return [...prevItems, text];
         });
@@ -59,7 +66,10 @@ function Todo() {
   async function handleDelete(event: React.FormEvent<HTMLFormElement>, index: number): Promise<void> {
         event.preventDefault();
         const { email } = location.state;
-        await axios.post("http://localhost:3001/delete", {email: email, note: items[index]});
+        await axios.post("https://keepitbackend-xvp5.onrender.com/delete", {
+          email: email,
+          note: items[index],
+        });
         setItems(prevItems => {
             return prevItems.filter((_, i) => i !== index);
         });

@@ -27,10 +27,13 @@ function Signup() {
     event.preventDefault(); // Prevent default form submission
 
     try {
-      const result = await axios.post("http://localhost:3001/signup", {
-        email,
-        password,
-      });
+      const result = await axios.post(
+        "https://keepitbackend-xvp5.onrender.com/signup",
+        {
+          email,
+          password,
+        }
+      );
 
       const { status, message } = result.data;
       if (status === 1) {

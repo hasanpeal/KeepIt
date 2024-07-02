@@ -48,10 +48,13 @@ function Login() {
   ): Promise<void> {
     event.preventDefault();
     try {
-      const result = await axios.post("http://localhost:3001/signin", {
-        email,
-        password,
-      });
+      const result = await axios.post(
+        "https://keepitbackend-xvp5.onrender.com/signin",
+        {
+          email,
+          password,
+        }
+      );
       const { status } = result.data;
       setAlertStat(status); // Update alert state based on API response status
       if (status === 1) {
