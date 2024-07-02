@@ -47,6 +47,7 @@ function Login() {
   ): Promise<void> {
     event.preventDefault();
     try {
+      setSpin(true);
       const result = await axios.post(
         "https://keepitbackend-xvp5.onrender.com/signin",
         {
@@ -57,9 +58,9 @@ function Login() {
       const { status } = result.data;
       setAlertStat(status); // Update alert state based on API response status
       if (status === 1) {
-        setSpin(true);
-        console.log("Spin status: " + spin);
-          navigate("/todo", { state: { email, password } });
+        navigate("/todo", { state: { email, password } });
+      } else {
+        setSpin(false);
       }
     } catch (error) {
       console.error("Error during axios call signin:", error);

@@ -27,6 +27,8 @@ function Signup() {
     event.preventDefault(); // Prevent default form submission
 
     try {
+      setSpin(true);
+      console.log("Spin status: " + spin);
       const result = await axios.post(
         "https://keepitbackend-xvp5.onrender.com/signup",
         {
@@ -37,10 +39,9 @@ function Signup() {
 
       const { status, message } = result.data;
       if (status === 1) {
-        setSpin(true);
-        console.log("Spin status: " + spin);
         navigate("/login", { state: { message: message, stat: true } });
       } else {
+        setSpin(false);
         console.error("Signup failed:", message);
       }
     } catch (error) {
