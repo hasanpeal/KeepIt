@@ -29,14 +29,14 @@ html{
 .Items{
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
 }
 
 .IndButton{
     position: absolute;
-    left: 190px;
-    top: -8px;
+    left: 185px;
+    top: -7px;
 }
 
 .IndCard{
