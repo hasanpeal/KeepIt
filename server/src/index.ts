@@ -9,7 +9,11 @@ import { retriveTodos } from "../database/services/todoService";
 import { deleteTodo } from "../database/services/todoService";
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow requests from this origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow cookies to be sent with the requests
+}));
 app.use(express.json());
 const port = 3001;
 
