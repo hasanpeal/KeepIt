@@ -5,6 +5,15 @@ import { Button } from "keep-react";
 import { useLocation} from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarCollapse,
+  NavbarCollapseBtn,
+  NavbarItem,
+  NavbarList,
+} from "keep-react";
+import { useNavigate } from "react-router-dom";
 
 function Todo() {
   const [todos, setTodos] = useState<string[]>([]);
@@ -12,7 +21,8 @@ function Todo() {
   const [text, setText] = useState<string>("");
   const location = useLocation();
   console.log(todos);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -76,65 +86,120 @@ function Todo() {
         });
    }
 
-  return (
-    <div className="Todo grid-cols-1">
-      <div className="Title">
-        <Card>
-          <CardContent>
-            <CardTitle className="TitleText">To Do List</CardTitle>
-            <CardDescription> Keep track of to do</CardDescription>
-          </CardContent>
-        </Card>
-      </div>
-      <div className="Input">
-        <Input
-          placeholder="Enter to do"
-          type="text"
-          value={text}
-          onChange={handleText}
-        />
-      </div>
-      <div>
-        <form onSubmit={handleAdd}>
-          <Button
-            type="submit"
-            color="secondary"
-            variant="outline"
-            className="ButtonEdit"
-          >
-            Add
-          </Button>
-        </form>
-      </div>
+  function handleSignout() {
+    navigate("/");
+  }
 
-      <div className="Items">
-        {items.map((item, index) => (
-          <div className="IndCard" key={index}>
-            <Card className="max-w-md">
-              <CardContent>
-                <CardDescription> {item} </CardDescription>
-              </CardContent>
-              <form onSubmit={(event) => handleDelete(event, index)}>
-                <Button
-                  shape="circle"
-                  color="secondary"
-                  size="xs"
-                  className="IndButton"
-                  type="submit"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="45"
-                    height="60"
-                    viewBox="0 0 50 50"
+  return (
+    <div>
+      <Navbar>
+        <div className="NavbarContainer">
+          <NavbarBrand>
+            <svg
+              id="Notes_App_24"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              className="Icon"
+            >
+              <rect
+                width="24"
+                height="24"
+                stroke="none"
+                fill="#000000"
+                opacity="0"
+              />
+              <g transform="matrix(0.48 0 0 0.48 12 12)">
+                <path
+                  style={{
+                    stroke: "none",
+                    strokeWidth: 1,
+                    strokeDasharray: "none",
+                    strokeLinecap: "butt",
+                    strokeDashoffset: 0,
+                    strokeLinejoin: "miter",
+                    strokeMiterlimit: 4,
+                    fill: "rgb(0,0,0)",
+                    fillRule: "nonzero",
+                    opacity: 1,
+                  }}
+                  transform="translate(-25, -25)"
+                  d="M 14 4 C 8.486 4 4 8.486 4 14 L 4 36 C 4 41.514 8.486 46 14 46 L 36 46 C 41.514 46 46 41.514 46 36 L 46 14 C 46 8.486 41.514 4 36 4 L 14 4 z M 6 18 L 44 18 L 44 26 L 6 26 L 6 18 z M 8 20 L 8 22 L 10 22 L 10 20 L 8 20 z M 12 20 L 12 22 L 14 22 L 14 20 L 12 20 z M 16 20 L 16 22 L 18 22 L 18 20 L 16 20 z M 20 20 L 20 22 L 22 22 L 22 20 L 20 20 z M 24 20 L 24 22 L 26 22 L 26 20 L 24 20 z M 28 20 L 28 22 L 30 22 L 30 20 L 28 20 z M 32 20 L 32 22 L 34 22 L 34 20 L 32 20 z M 36 20 L 36 22 L 38 22 L 38 20 L 36 20 z M 40 20 L 40 22 L 42 22 L 42 20 L 40 20 z M 6 28 L 44 28 L 44 35 L 6 35 L 6 28 z M 6 37 L 44 37 C 43.505 40.94 40.072 44 36 44 L 14 44 C 9.928 44 6.495 40.94 6 37 z"
+                  strokeLinecap="round"
+                />
+              </g>
+            </svg>
+          </NavbarBrand>
+          <NavbarList>
+            <NavbarItem active className="NavItem" onClick={handleSignout}>Sign out</NavbarItem>
+          </NavbarList>
+          <NavbarCollapseBtn className="NavCol" />
+          <NavbarCollapse>
+            <NavbarItem active onClick={handleSignout}>Sign out</NavbarItem>
+          </NavbarCollapse>
+        </div>
+      </Navbar>
+      <div className="Todo grid-cols-1">
+        <div className="Title">
+          <Card>
+            <CardContent>
+              <CardTitle className="TitleText">To Do List</CardTitle>
+              <CardDescription> Keep track of to do</CardDescription>
+            </CardContent>
+          </Card>
+        </div>
+        <div className="Input">
+          <Input
+            placeholder="Enter to do"
+            type="text"
+            value={text}
+            onChange={handleText}
+          />
+        </div>
+        <div>
+          <form onSubmit={handleAdd}>
+            <Button
+              type="submit"
+              color="secondary"
+              variant="outline"
+              className="ButtonEdit"
+            >
+              Add
+            </Button>
+          </form>
+        </div>
+
+        <div className="Items">
+          {items.map((item, index) => (
+            <div className="IndCard" key={index}>
+              <Card className="max-w-md">
+                <CardContent>
+                  <CardDescription> {item} </CardDescription>
+                </CardContent>
+                <form onSubmit={(event) => handleDelete(event, index)}>
+                  <Button
+                    shape="circle"
+                    color="secondary"
+                    size="xs"
+                    className="IndButton"
+                    type="submit"
                   >
-                    <path d="M25,2C12.319,2,2,12.319,2,25s10.319,23,23,23s23-10.319,23-23S37.681,2,25,2z M33.71,32.29c0.39,0.39,0.39,1.03,0,1.42	C33.51,33.9,33.26,34,33,34s-0.51-0.1-0.71-0.29L25,26.42l-7.29,7.29C17.51,33.9,17.26,34,17,34s-0.51-0.1-0.71-0.29	c-0.39-0.39-0.39-1.03,0-1.42L23.58,25l-7.29-7.29c-0.39-0.39-0.39-1.03,0-1.42c0.39-0.39,1.03-0.39,1.42,0L25,23.58l7.29-7.29	c0.39-0.39,1.03-0.39,1.42,0c0.39,0.39,0.39,1.03,0,1.42L26.42,25L33.71,32.29z"></path>
-                  </svg>
-                </Button>
-              </form>
-            </Card>
-          </div>
-        ))}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="45"
+                      height="60"
+                      viewBox="0 0 50 50"
+                    >
+                      <path d="M25,2C12.319,2,2,12.319,2,25s10.319,23,23,23s23-10.319,23-23S37.681,2,25,2z M33.71,32.29c0.39,0.39,0.39,1.03,0,1.42	C33.51,33.9,33.26,34,33,34s-0.51-0.1-0.71-0.29L25,26.42l-7.29,7.29C17.51,33.9,17.26,34,17,34s-0.51-0.1-0.71-0.29	c-0.39-0.39-0.39-1.03,0-1.42L23.58,25l-7.29-7.29c-0.39-0.39-0.39-1.03,0-1.42c0.39-0.39,1.03-0.39,1.42,0L25,23.58l7.29-7.29	c0.39-0.39,1.03-0.39,1.42,0c0.39,0.39,0.39,1.03,0,1.42L26.42,25L33.71,32.29z"></path>
+                    </svg>
+                  </Button>
+                </form>
+              </Card>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

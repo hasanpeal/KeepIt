@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+footer{
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  background-color: #222831;
+  position: relative;
+  bottom: 20px;
+}
+
+hr{
+    position: relative;
+    bottom: 25px;
+}

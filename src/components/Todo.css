@@ -45,3 +45,29 @@ html{
     height: auto;
     margin-bottom: 10px;
 }
+
+.Icon{
+    margin-left: 20px;
+}
+
+.NavCol{
+    margin-right: 20px;
+}
+
+.NavbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.NavbarList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.NavItem{
+    margin-right: 20px;
+}
