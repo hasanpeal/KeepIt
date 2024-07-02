@@ -1,6 +1,6 @@
 import "./Login.css";
 import { Envelope, Lock } from "phosphor-react";
-import { Button, InputIcon, Input, Label } from "keep-react";
+import { Button, InputIcon, Input, Label, Spinner } from "keep-react";
 import {
   Alert,
   AlertContainer,
@@ -9,11 +9,8 @@ import {
   AlertTitle,
 } from "keep-react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useEffect } from "react";
-import { Spinner } from "keep-react";
-
 
 function Login() {
   const location = useLocation();
@@ -22,14 +19,15 @@ function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [alertStat, setAlertStat] = useState<number | null>(null); // State for alert handling
-  const [spin, setSpin] = useState(false);
+  const [spin, setSpin] = useState<boolean>(false);
+
   // useEffect to automatically clear alertStat after 5 seconds
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
     if (alertStat !== null) {
       timer = setTimeout(() => {
         setAlertStat(null);
-      }, 3000); // 5000 milliseconds = 5 seconds
+      }, 3000); // 3000 milliseconds = 3 seconds
     }
     return () => {
       if (timer) clearTimeout(timer);
@@ -59,11 +57,12 @@ function Login() {
       const { status } = result.data;
       setAlertStat(status); // Update alert state based on API response status
       if (status === 1) {
-        setSpin(false);
-        navigate("/todo", { state: { email, password } });
+        setSpin(true);
+        console.log("Spin status: " + spin);
+          navigate("/todo", { state: { email, password } });
       }
     } catch (error) {
-      console.error("Error dfbdlbfouring axios call signin:", error);
+      console.error("Error during axios call signin:", error);
     }
   }
 
@@ -140,7 +139,7 @@ function Login() {
         <Button className="inButton" size="sm" color="secondary" type="submit">
           Sign in
         </Button>
-        <Spinner style={{"display": spin ? "block": "none"}} color="gray" size="lg" />
+        {spin && <Spinner className="Spin" color="gray" size="lg" />}
       </form>
     </div>
   );

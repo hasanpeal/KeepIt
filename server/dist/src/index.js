@@ -24,7 +24,7 @@ const todoService_3 = require("../database/services/todoService");
 const app = (0, express_1.default)();
 app.use(
   (0, cors_1.default)({
-    origin: "http://localhost:3000", // Allow requests from this origin
+    origin: "https://keepit-thuj.onrender.com", // Allow requests from this origin
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true, // Allow cookies to be sent with the requests
   })

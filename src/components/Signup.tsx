@@ -1,6 +1,6 @@
 import "./Login.css";
 import { Envelope, Lock } from "phosphor-react";
-import { Button, InputIcon, Input, Label } from "keep-react";
+import { Button, InputIcon, Input, Label, Spinner } from "keep-react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Signup() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const [spin, setSpin] = useState<boolean>(false);
   const navigate = useNavigate();
 
   function handleEmail(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -37,8 +37,9 @@ function Signup() {
 
       const { status, message } = result.data;
       if (status === 1) {
-        console.log(message);
-        navigate("/login", {state: {message: message, stat: true}});
+        setSpin(true);
+        console.log("Spin status: " + spin);
+        navigate("/login", { state: { message: message, stat: true } });
       } else {
         console.error("Signup failed:", message);
       }
@@ -87,6 +88,7 @@ function Signup() {
         <Button className="inButton" size="sm" color="secondary" type="submit">
           Sign up
         </Button>
+        {spin && <Spinner className="Spin" color="gray" size="lg" />}
       </form>
     </div>
   );
