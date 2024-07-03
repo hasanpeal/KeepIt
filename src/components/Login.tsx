@@ -160,6 +160,7 @@ function Login() {
                 className="ps-11"
                 value={email}
                 onChange={handleEmail}
+                type="email"
               />
               <InputIcon>
                 <Envelope size={19} color="#AFBACA" />

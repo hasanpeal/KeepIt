@@ -109,6 +109,7 @@ function Signup() {
                 value={email}
                 onChange={handleEmail}
                 className="ps-11"
+                type="email"
               />
               <InputIcon>
                 <Envelope size={19} color="#AFBACA" />
